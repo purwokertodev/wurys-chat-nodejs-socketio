@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  script.
+    $(document).ready(function(){
+      var username = 'anonymous';
+      var socket = io();
+      $('form').submit(function(){
+        var name = document.getElementById('name').value;
+        if('' != name){
+          username = name;
+        }
+        socket.emit('new user', username);
+      });
+    });
+  div.panel.panel-primary
+    div.panel.panel-heading
+      h2  Ayo Ngobrol bro...
+    div.panel.panel-body
+      form.form-chat.form-horizontal(method="post" action="/start")
+        div.form-group
+          input.form-control(type="text" id="name" placeholder="Masukan nama kamu")
+        div.form-group
+          button.button-send.btn.btn-default(type="submit") Next

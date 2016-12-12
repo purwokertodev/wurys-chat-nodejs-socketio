@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  script.
+    var username = 'anonymous';
+    var socket = io();
+    $(document).ready(function(){
+
+      socket.on('new user', function(msg){
+        $('#messages').append($('<li class="list-group-item list-group-item-warning">').text(msg.username +' bergabung..'));
+      });
+
+      $('form').submit(function(){
+        socket.emit('chat message', {from: username, msg: $('#message').val()});
+        $('#message').val('');
+        return false;
+      });
+
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li class="list-group-item">').text(msg.from +' : '+msg.msg));
+      });
+    });
+  div.panel.panel-primary
+    div.panel.panel-heading
+      h2  Ayo Ngobrol bro...
+      h3
+        span#myName.label.label-danger
+    div.panel.panel-body
+      form.form-chat.form-horizontal(action="")
+        div.form-group
+          input.form-control(type="text" id="message")
+        div.form-group
+          button.button-send.btn.btn-default(type="submit") Send
+    ul#messages.list-group

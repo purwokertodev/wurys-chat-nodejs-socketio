@@ -1,0 +1,6 @@
+Very simple realtime chat application
+
+NODE JS, SOCKET IO, EXPRESS JS
+
+- npm install
+- run at localhost:3000
