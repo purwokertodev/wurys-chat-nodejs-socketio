@@ -5,8 +5,14 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
+//require for passport
+let connectEnsure = require('connect-ensure-login');
+let session = require('express-session');
+let flash = require('connect-flash');
+
 let index = require('./lib/controllers/index_controller');
 
+let passport = require('./lib/utils/passport');
 
 
 let app = express();
@@ -23,9 +29,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//passport
+app.use(session({secret: 'wuryschat'}));
+app.use(passport.init());
+app.use(passport.session());
+app.use(flash());
+
 //routes
 app.get('/', index.index);
-app.post('/start', index.start);
+app.post('/login', passport.auth());
 app.get('/chat', index.chat);
 
 

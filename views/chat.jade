@@ -10,7 +10,7 @@ block content
       });
 
       $('form').submit(function(){
-        socket.emit('send message', $('#message').val());
+        socket.emit('send message', {from: $('#user').text(), msg: $('#message').val()});
         $('#message').val('');
         return false;
       });
@@ -23,7 +23,7 @@ block content
     div.panel.panel-heading
       h2  Ayo Ngobrol bro...
       h3
-        span#myName.label.label-danger
+        span#user.label.label-danger #{member.fullName}
     div.panel.panel-body
       form.form-chat.form-horizontal(action="")
         div.form-group
