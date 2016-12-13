@@ -6,7 +6,7 @@ block content
     $(document).ready(function(){
 
       socket.on('user joined', function(msg){
-        $('#messages').append($('<li class="list-group-item list-group-item-warning">').text(msg.username +' bergabung..'));
+        $('#messages').prepend($('<li class="list-group-item list-group-item-warning">').text(msg.username +' bergabung..'));
       });
 
       $('form').submit(function(){
@@ -16,7 +16,7 @@ block content
       });
 
       socket.on('chat message', function(msg){
-        $('#messages').append($('<li class="list-group-item">').text(msg.from +' : '+msg.msg));
+        $('#messages').prepend($('<li class="list-group-item">').text(msg.from +' : '+msg.msg));
       });
     });
   div.panel.panel-primary
