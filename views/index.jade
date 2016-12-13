@@ -4,13 +4,14 @@ block content
   script.
     $(document).ready(function(){
       var username = 'anonymous';
-      var socket = io();
-      $('form').submit(function(){
-        var name = document.getElementById('name').value;
+      var socket = io.connect();
+      $('form').submit(function(e){
+        var name = $('#name').val();
         if('' != name){
           username = name;
         }
         socket.emit('new user', username);
+        name.val('');
       });
     });
   div.panel.panel-primary

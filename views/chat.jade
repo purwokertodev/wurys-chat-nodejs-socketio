@@ -2,16 +2,15 @@ extends layout
 
 block content
   script.
-    var username = 'anonymous';
-    var socket = io();
+    var socket = io.connect();
     $(document).ready(function(){
 
-      socket.on('new user', function(msg){
+      socket.on('user joined', function(msg){
         $('#messages').append($('<li class="list-group-item list-group-item-warning">').text(msg.username +' bergabung..'));
       });
 
       $('form').submit(function(){
-        socket.emit('chat message', {from: username, msg: $('#message').val()});
+        socket.emit('send message', $('#message').val());
         $('#message').val('');
         return false;
       });
