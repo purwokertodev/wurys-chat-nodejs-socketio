@@ -5,6 +5,13 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "author": "wuriyanto (wuriyanto48@yahoo.co.id)",
+  "keywords":["nodejs", "socket io", "realtime chat", "javascript"],
+  "homepage": "https://github.com/wuriyanto48/wurys-chat-nodejs-socketio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wuriyanto48/wurys-chat-nodejs-socketio.git"
+  },
   "dependencies": {
     "body-parser": "~1.15.2",
     "connect-ensure-login": "^0.1.1",
